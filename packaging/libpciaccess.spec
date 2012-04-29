@@ -2,13 +2,14 @@
 Name:       libpciaccess
 Summary:    PCI access library
 Version:    0.12.0
-Release:    0
+Release:    2.33
 Group:      System/Libraries
 License:    MIT
 URL:        http://www.x.org/
 Source0:    http://xorg.freedesktop.org/archive/individual/lib/%{name}-%{version}.tar.bz2
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
+BuildRequires:  pkgconfig(xorg-macros)
 BuildRequires:  zlib-devel
 
 
@@ -31,7 +32,7 @@ Generic PCI access library development package
 
 %build
 
-%configure --disable-static \
+%reconfigure --disable-static \
     --with-pciids-path=%{_prefix}/share/misc --with-zlib \
 
 make %{?jobs:-j%jobs}
