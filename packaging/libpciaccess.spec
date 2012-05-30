@@ -7,6 +7,7 @@ Group:      System/Libraries
 License:    MIT
 URL:        http://www.x.org/
 Source0:    http://xorg.freedesktop.org/archive/individual/lib/%{name}-%{version}.tar.bz2
+Source1001: packaging/libpciaccess.manifest 
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
 BuildRequires:  pkgconfig(xorg-macros)
@@ -31,6 +32,7 @@ Generic PCI access library development package
 
 
 %build
+cp %{SOURCE1001} .
 
 %reconfigure --disable-static \
     --with-pciids-path=%{_prefix}/share/misc --with-zlib \
@@ -53,12 +55,14 @@ rm -rf %{buildroot}
 
 
 %files
+%manifest libpciaccess.manifest
 %defattr(-,root,root,-)
 %{_libdir}/libpciaccess.so.0
 %{_libdir}/libpciaccess.so.0.10.8
 
 
 %files devel
+%manifest libpciaccess.manifest
 %defattr(-,root,root,-)
 %{_includedir}/pciaccess.h
 %{_libdir}/libpciaccess.so
