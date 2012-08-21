@@ -36,20 +36,20 @@ obj-$(DEB_BUILD_GNU_TYPE)/config.status: configure
 	  --with-pciids-path=\$${prefix}/share/misc \
 	  --with-zlib \
 	  $(confflags) \
-	  CFLAGS="$(CFLAGS)" 
+	  CFLAGS="$(CFLAGS)"
 
 build: build-stamp
 build-stamp: obj-$(DEB_BUILD_GNU_TYPE)/config.status
 	dh_testdir
 	cd obj-$(DEB_BUILD_GNU_TYPE) && $(MAKE)
-	
+
 	touch build-stamp
 
-clean: 
+clean:
 	dh_testdir
 	dh_testroot
 	rm -f build-stamp
-	
+
 	rm -f config.cache config.log config.status
 	rm -f */config.cache */config.log */config.status
 	rm -f conftest* */conftest*
@@ -59,7 +59,7 @@ clean:
 	rm -f compile config.guess config.sub configure depcomp install-sh
 	rm -f ltmain.sh missing INSTALL aclocal.m4 mkinstalldirs config.h.in
 	rm -f m4/libtool.m4 m4/lt*.m4
-	
+
 	dh_clean
 
 install: build
