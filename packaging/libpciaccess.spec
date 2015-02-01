@@ -66,4 +66,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/pciaccess.h
 %{_libdir}/libpciaccess.so
 %{_libdir}/pkgconfig/pciaccess.pc
-
