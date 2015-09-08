@@ -41,6 +41,8 @@ make %{?jobs:-j%jobs}
 
 %install
 rm -rf $RPM_BUILD_ROOT
+mkdir -p %{buildroot}/usr/share/license
+cp -af COPYING %{buildroot}/usr/share/license/%{name}
 make install DESTDIR=$RPM_BUILD_ROOT
 rm -f $RPM_BUILD_ROOT/%{_libdir}/*.la
 
@@ -54,7 +56,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root,-)
-%doc COPYING AUTHORS
+/usr/share/license/%{name}
+#%doc COPYING AUTHORS
 %{_libdir}/libpciaccess.so.0
 %{_libdir}/libpciaccess.so.0.11.*
 
